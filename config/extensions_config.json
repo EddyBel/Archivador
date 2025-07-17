@@ -1,0 +1,33 @@
+{
+  "Videos": ["mp4", "mkv", "avi", "mov", "flv", "wmv", "webm", "mpeg", "3gp", "ts"],
+  "Documents": {
+    "Word": ["doc", "docx"],
+    "PDF": ["pdf"],
+    "Text": ["txt", "md", "rtf"],
+    "Presentations": ["ppt", "pptx", "odp"],
+    "Spreadsheets": ["xls", "xlsx", "csv", "ods"]
+  },
+  "Images": ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "webp", "svg", "ico", "heic"],
+  "Audio": ["mp3", "wav", "flac", "ogg", "m4a", "aac", "aiff", "wma", "opus"],
+  "Compressed": ["zip", "rar", "7z", "tar", "gz", "xz", "bz2", "lz", "iso"],
+  "Code": {
+    "Python": ["py"],
+    "JavaScript": ["js", "jsx"],
+    "TypeScript": ["ts", "tsx"],
+    "HTML_CSS": ["html", "htm", "css"],
+    "C_Cpp": ["c", "cpp", "h", "hpp"],
+    "Java": ["java", "jar"],
+    "Shell": ["sh", "bash", "zsh"],
+    "Other": ["rb", "go", "rs", "lua", "php", "swift", "kt", "cs"]
+  },
+  "Executables": ["exe", "msi", "bat", "apk", "deb", "rpm", "bin", "out", "dll"],
+  "Data": {
+    "JSON": ["json"],
+    "XML_YAML": ["xml", "yml", "yaml"],
+    "SQL": ["sql"],
+    "Excel": ["xls", "xlsx", "csv"],
+    "Parquet": ["parquet"]
+  },
+  "eBooks": ["epub", "mobi", "azw3", "cbz", "cbr"],
+  "Config": ["ini", "conf", "cfg", "env", "toml", "properties"]
+}
