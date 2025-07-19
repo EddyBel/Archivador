@@ -35,10 +35,11 @@ def show_main_menu():
     console.print("1. Separar archivos duplicados")
     console.print("2. Clasificar archivos por extensión")
     console.print("3. Clasificar archivos por fecha")
-    console.print("4. Realizar todo (duplicados + clasificación)")
-    console.print("5. Salir")
+    console.print("4. Colectar archivos y mover según configuración")
+    console.print("5. Realizar todo (duplicados + clasificación)")
+    console.print("6. Salir")
 
-    choice = Prompt.ask("\nSelecciona una opción", choices=["1", "2", "3", "4", "5"])
+    choice = Prompt.ask("\nSelecciona una opción", choices=["1", "2", "3", "4", "5", "6"])
     return choice
 
 
@@ -84,6 +85,8 @@ def ask_date_mode() -> str:
 def ask_path() -> str:
     return Prompt.ask("Introduce la ruta de la carpeta a archivar")
 
+def ask_dest_path() -> str:
+    return Prompt.ask("Introduce la ruta de la carpeta destino donde se moverán los archivos")
 
 def show_config_summary(config: dict):
     console.rule("[bold green]Resumen de configuración seleccionada")

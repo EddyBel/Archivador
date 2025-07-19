@@ -1,6 +1,7 @@
 from core.duplicates import DuplicateHandler
 from core.file_organizer import FileOrganizer
 from core.folder_analyzer import FolderAnalyzer
+from core.filecollector import FileCollector
 from core.menu import (
     show_ascii_title,
     show_main_menu,
@@ -10,9 +11,12 @@ from core.menu import (
     ask_path,
     show_config_summary,
     simulate_progress,
+    ask_dest_path,
 )
 from configs import extension_config as default_ext_config
 from configs import rename_config as default_rename_config
+from configs import collector_exclude_config
+from configs import collector_config as default_collector_config
 from rich.console import Console
 from rich.table import Table
 import os
@@ -46,7 +50,7 @@ def main():
 
     choice = show_main_menu()
 
-    if choice == "5":
+    if choice == "6":
         print("Saliendo del Archivador...")
         return
 
@@ -57,9 +61,10 @@ def main():
     config_summary["Ruta"] = path
 
     # Ejecutar según elección
-    do_duplicates = choice in ["1", "4"]
-    do_classify_ext = choice in ["2", "4"]
+    do_duplicates = choice in ["1", "5"]
+    do_classify_ext = choice in ["2", "5"]
     do_classify_date = choice == "3"
+    do_collect = choice == "4"
 
     # Configuración de clasificación por extensión
     ext_config = None
@@ -88,6 +93,34 @@ def main():
         dh_results = dh._get_results()
         display_results_table(path, dh_results, "Archivos Duplicados")
 
+    if do_collect:
+        # Pedir configuración de extensiones (usar default o personalizada)
+        dest_path = ask_dest_path()
+        ext_config = ask_extension_config(default_collector_config)
+        ext_exclude_config = ask_extension_config(collector_exclude_config)
+
+        config_summary = {
+            "Ruta origen": path,
+            "Ruta destino": dest_path,
+            "Configuración de extensiones": ext_config,
+            "Configuración de extensiones para excluir": ext_exclude_config,
+        }
+
+        show_config_summary(config_summary)
+
+        simulate_progress("Recolectando y moviendo archivos", seconds=3)
+
+        collector = FileCollector(
+            source_path=path,
+            dest_path=dest_path,
+            config=ext_config,
+            excluded_config=ext_exclude_config,
+        )
+        collector.collect()
+        results = collector._get_results()
+
+        display_results_table(path, results, "Resultados de Colecta y Movimiento")
+
     # Ejecutar organización por extensión/fecha
     if do_classify_ext or do_classify_date:
         simulate_progress("Organizando archivos", seconds=3)
@@ -102,11 +135,11 @@ def main():
         display_results_table(path, fo_results, "Organización de Archivos")
 
     # Ejecutar análisis
-    simulate_progress("Analizando carpeta final", seconds=2)
-    fa = FolderAnalyzer(path)
-    fa.analyze()
-    fa_results = fa._get_results()
-    display_results_table(path, fa_results, "Análisis Final de Carpeta")
+    # simulate_progress("Analizando carpeta final", seconds=2)
+    # fa = FolderAnalyzer(path)
+    # fa.analyze()
+    # fa_results = fa._get_results()
+    # display_results_table(path, fa_results, "Análisis Final de Carpeta")
 
 
 if __name__ == "__main__":

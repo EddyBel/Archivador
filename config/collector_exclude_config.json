@@ -1,0 +1,4 @@
+{
+  "invalid_starts": ["~", ".", "$", "#"],
+  "invalid_exts": ["tmp", "log", "sys", "dll", "ini", "lnk"]
+}
