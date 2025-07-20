@@ -63,7 +63,8 @@
     "kdbx",
     "kdb",
     "kdbx",
-    "kdb"
+    "kdb",
+    "ledger"
   ],
   "adobe": [
     "psd",
@@ -120,6 +121,6 @@
     "url"
   ],
   "imagenes_disco": ["iso", "img", "bin", "dmg", "vhd", "vhdx"],
-  "ejecutables": ["exe", "msi", "apk", "bat", "cmd", "com"],
+  "ejecutables": ["exe", "msi", "apk", "bat", "cmd", "com", "sh", "ps1", "vbs"],
   "proyectos_edicion": ["tscproj"]
 }
